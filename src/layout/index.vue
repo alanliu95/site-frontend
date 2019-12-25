@@ -13,25 +13,26 @@
 
 <script>
 import { Navbar, Sidebar, AppMain } from './components'
+// todo mixin是什么
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
   name: 'Layout',
   components: {
-    Navbar,
-    Sidebar,
-    AppMain
+    Sidebar, // 左侧边栏
+    Navbar, // 导航栏
+    AppMain // view容器
   },
   mixins: [ResizeMixin],
-  computed: {
+  computed: { // 计算字段
     sidebar() {
-      return this.$store.state.app.sidebar
+      return this.$store.state.app.sidebar // app.sidebar
     },
     device() {
-      return this.$store.state.app.device
+      return this.$store.state.app.device // app.device
     },
     fixedHeader() {
-      return this.$store.state.settings.fixedHeader
+      return this.$store.state.settings.fixedHeader // settings.fixedHeader
     },
     classObj() {
       return {
@@ -44,7 +45,7 @@ export default {
   },
   methods: {
     handleClickOutside() {
-      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
+      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false }) // vuex action
     }
   }
 }

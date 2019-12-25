@@ -2,13 +2,21 @@
   <div class="sidebar-logo-container" :class="{'collapse':collapse}">
     <transition name="sidebarLogoFade">
       <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo">
+        <img v-if="logo" src="@/assets/badge1200.png" class="sidebar-logo">
         <h1 v-else class="sidebar-title">{{ title }} </h1>
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo">
+        <img v-if="logo" src="@/assets/badge1200.png" class="sidebar-logo">
         <h1 class="sidebar-title">{{ title }} </h1>
       </router-link>
+<!--      <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">-->
+<!--        <img v-if="logo" :src="logo" class="sidebar-logo">-->
+<!--        <h1 v-else class="sidebar-title">{{ title }} </h1>-->
+<!--      </router-link>-->
+<!--      <router-link v-else key="expand" class="sidebar-logo-link" to="/">-->
+<!--        <img v-if="logo" :src="logo" class="sidebar-logo">-->
+<!--        <h1 class="sidebar-title">{{ title }} </h1>-->
+<!--      </router-link>-->
     </transition>
   </div>
 </template>
@@ -24,8 +32,11 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Admin Template',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      title: '华东理工大学', // Vue Admin Template
+      logo: 'https://www.ecust.edu.cn/_upload/tpl/01/6e/366/template366/favicon.ico'
+      //         <img class="pic-404__parent" src="@/assets/404_images/404.png" alt="404">
+      // logo: 'https://www.ecust.edu.cn/_upload/tpl/01/6e/366/template366/images/logo.png'
+      // logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
     }
   }
 }
