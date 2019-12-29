@@ -106,9 +106,9 @@ export default {
       })
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true
+      this.$refs.loginForm.validate(valid => { // this.$refs.loginForm :el-form组件实例
+        if (valid) { // 表单验证成功
+          this.loading = true // 箭头函数 this 指向其定义时作用域的对象实例
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false

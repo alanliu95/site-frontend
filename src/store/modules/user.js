@@ -29,7 +29,7 @@ const actions = {
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
-        resolve()
+        resolve() // todo 该方法什么作用
       }).catch(error => {
         reject(error)
       })
