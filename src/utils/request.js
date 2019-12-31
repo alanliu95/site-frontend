@@ -15,7 +15,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // do something before request is sent
-    console.info('ajax请求：url: %s, 参数：%s', config.url, config.data)
+    console.debug('ajax请求：url: %s, 方法：%s', config.url, config.method)
     if (store.getters.token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
