@@ -107,10 +107,10 @@ export default {
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => { // this.$refs.loginForm :el-form组件实例
-        if (valid) { // 表单验证成功
-          this.loading = true // 箭头函数 this 指向其定义时作用域的对象实例
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
+        if (valid) { // 表单验证
+          this.loading = true
+          this.$store.dispatch('user/login', this.loginForm).then(() => { // 一、异步登录 实参为loginForm js实例
+            this.$router.push({ path: this.redirect || '/' }) // 二、 页面跳转至 redirect路径，若为null 则是 /
             this.loading = false
           }).catch(() => {
             this.loading = false

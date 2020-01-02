@@ -29,12 +29,12 @@ router.beforeEach(async(to, from, next) => {
       NProgress.done()
     } else {
       const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
+      if (hasGetUserInfo) { // 判断是否已经拉取过用户信息
         next()
       } else {
         try {
           // get user info
-          await store.dispatch('user/getInfo')
+          await store.dispatch('user/getInfo') // todo 同步拉取用户信息？
 
           next()
         } catch (error) {

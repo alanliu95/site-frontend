@@ -1,7 +1,7 @@
 // 默认设置
 module.exports = {
 
-  title: 'Vue Admin Template',
+  title: 'ECUST',
 
   /**
    * @type {boolean} true | false

@@ -8,12 +8,12 @@ import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
 import '@/styles/index.scss' // global css
 
-import App from './App'
-import store from './store'
-import router from './router'
+import App from './App' // 加载vue根实例
+import store from './store' // 导入 vuex store配置
+import router from './router'// 导入 vue-router 配置
 
 import '@/icons' // icon
-import '@/permission' // permission control
+import '@/permission' // 添加router变化钩子函数，实现用户登录拦截，权限控制，permission control
 
 /**
  * If you don't want to use mock-server

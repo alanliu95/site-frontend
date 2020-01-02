@@ -23,13 +23,13 @@ const mutations = {
 const actions = {
   // user login
   login({ commit }, userInfo) {
-    const { username, password } = userInfo // todo
+    const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
-        resolve() // todo 该方法什么作用
+        resolve()
       }).catch(error => {
         reject(error)
       })
@@ -37,7 +37,7 @@ const actions = {
   },
 
   // get user info
-  getInfo({ commit, state }) {
+  getInfo({ commit, state }) { // todo 调用者未提供实参，不知工作机理
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
         const { data } = response

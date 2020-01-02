@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  /* eslint-disable */
+/* eslint-disable */
   import { getAllSites } from '../../api/site'
 
   export default {
@@ -39,18 +39,18 @@
         })
       }
     },
-    // mounted: function() {
-    //   this.getSites()
-    // }
-    watch: {
-      $route: {
-        handler: function(route) {
-          console.info('当前route：', route.path)
-          this.getSites()
-        },
-        immediate: true
-      }
+    mounted: function() {
+      this.getSites()
     }
+    // watch: {
+    //   $route: {
+    //     handler: function(route) {
+    //       console.info('当前route：', route.path)
+    //       this.getSites()
+    //     },
+    //     immediate: true
+    //   }
+    // }
   }
 </script>
 
