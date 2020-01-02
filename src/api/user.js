@@ -17,8 +17,12 @@ export function getInfo(token) {
 }
 
 export function logout() {
-  return request({
-    url: URL_PREFIX + '/user/logout',
-    method: 'post'
+  // return request({
+  //   url: URL_PREFIX + '/user/logout',
+  //   method: 'post'
+  // })
+  return new Promise((resolve, reject) => {
+    console.info('logout')
+    resolve()
   })
 }

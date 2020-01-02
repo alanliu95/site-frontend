@@ -10,8 +10,18 @@
       </el-option>
     </el-select>
 <!--    <div>场地:{{JSON.parse(value)}}</div>-->
-    <button @click="setSite">确定</button>
-    <div>store:{{site}}</div>
+    <el-button type="primary" @click="setSite">确定</el-button>
+    <el-button type="primary" @click="resetSite">重置</el-button>
+    <div>store:{{JSON.stringify(site)}}</div>
+    <el-popconfirm
+      confirmButtonText='是'
+      cancelButtonText='否'
+      icon="el-icon-info"
+      iconColor="red"
+      title="这是一段内容确定删除吗？"
+    >
+      <el-button slot="reference">删除</el-button>
+    </el-popconfirm>
   </div>
 </template>
 
@@ -42,7 +52,8 @@
         })
       },
       setSite(){
-        this.$store.dispatch('site/setSite',this.value).then(()=>{
+        let siteObj= JSON.parse(this.value)
+        this.$store.dispatch('site/setSite',siteObj).then(()=>{
           console.info('向store提交site成功')
           // console.info(store.state.site)
         }).catch(()=>{
@@ -51,12 +62,23 @@
         // let currSite=JSON.parse(this.value)
         // console.info(JSON.stringify(currSite))
         // alert(currSite)
+      },
+      resetSite(){
+        this.$store.dispatch('site/setSite',{}).then(()=>{
+          console.info('重置 store site成功')
+          // console.info(store.state.site)
+        }).catch(()=>{
+          console.info('重置 store site失败')
+        })
       }
     },
     computed: {
-      ...mapGetters([
-        'site'
-      ])
+      // ...mapGetters([
+      //   'site'
+      // ])
+      site(){
+        return Object.keys(this.$store.state.site.site).length===0?'选取场地':this.$store.state.site.site
+      }
     },
     mounted: function() {
       this.getSites()

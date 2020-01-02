@@ -1,5 +1,5 @@
 const state = {
-  site: ''
+  site: {}
 }
 const mutations = {
   SET_SITE: (state, site) => {
