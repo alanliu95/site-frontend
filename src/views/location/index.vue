@@ -1,27 +1,17 @@
 <template>
-  <div>
-    <h1>选择场地界面</h1>
+  <div class="app-container">
+    <h3>选择场地界面</h3>
     <el-select v-model="value" filterable placeholder="选择场地">
       <el-option
         v-for="item in options"
         :key="item.id"
         :label="item.name"
-        :value="JSON.stringify(item)">
-      </el-option>
+        :value="JSON.stringify(item)"
+      />
     </el-select>
-<!--    <div>场地:{{JSON.parse(value)}}</div>-->
+    <!--    <div>场地:{{JSON.parse(value)}}</div>-->
     <el-button type="primary" @click="setSite">确定</el-button>
-    <el-button type="primary" @click="resetSite">重置</el-button>
-    <div>store:{{JSON.stringify(site)}}</div>
-    <el-popconfirm
-      confirmButtonText='是'
-      cancelButtonText='否'
-      icon="el-icon-info"
-      iconColor="red"
-      title="这是一段内容确定删除吗？"
-    >
-      <el-button slot="reference">删除</el-button>
-    </el-popconfirm>
+    <div>store:{{ JSON.stringify(site) }}</div>
   </div>
 </template>
 
@@ -29,6 +19,7 @@
 /* eslint-disable */
   import { mapGetters } from 'vuex'
   import { getAllSites } from '../../api/site'
+
 
   export default {
     name: 'Location',
@@ -39,6 +30,7 @@
       //   this.sites = response
       // }
       return {
+        visible:true,
         options: [],
         value: ''
       }
@@ -52,10 +44,18 @@
         })
       },
       setSite(){
+        if(this.value=='') return //未选择任何场地
         let siteObj= JSON.parse(this.value)
         this.$store.dispatch('site/setSite',siteObj).then(()=>{
           console.info('向store提交site成功')
           // console.info(store.state.site)
+          this.$notify({
+            title: '选取场地',
+            message:'操作成功',
+            type: 'success',
+            position: 'top-right',
+            offset: 50
+          })
         }).catch(()=>{
           console.info('向store提交site失败')
         })
@@ -63,13 +63,13 @@
         // console.info(JSON.stringify(currSite))
         // alert(currSite)
       },
-      resetSite(){
-        this.$store.dispatch('site/setSite',{}).then(()=>{
-          console.info('重置 store site成功')
-          // console.info(store.state.site)
-        }).catch(()=>{
-          console.info('重置 store site失败')
-        })
+      open() {
+        this.$notify({
+          title: '选取场地',
+          message:'操作成功',
+          type: 'success',
+          position: 'bottom-right'
+        });
       }
     },
     computed: {

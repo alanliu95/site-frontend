@@ -1,7 +1,6 @@
 <template>
   <div class="navbar">
     <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
     <breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
@@ -28,6 +27,9 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+    <div class="right-menu" style="margin-right: 10px">
+      <target-site-info/>
+    </div>
   </div>
 </template>
 
@@ -35,11 +37,13 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
+import TargetSiteInfo from '@/components/TargetSiteInfo'
 
 export default {
   components: {
     Breadcrumb,
-    Hamburger
+    Hamburger,
+    TargetSiteInfo
   },
   computed: {
     ...mapGetters([

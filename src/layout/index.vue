@@ -30,7 +30,7 @@ export default {
       return this.$store.state.app.sidebar // app.sidebar
     },
     device() {
-      return this.$store.state.app.device // app.device
+      return this.$store.state.app.device // app.devices
     },
     fixedHeader() {
       return this.$store.state.settings.fixedHeader // settings.fixedHeader
@@ -48,7 +48,7 @@ export default {
     handleClickOutside() {
       this.$store.dispatch('app/closeSideBar', { withoutAnimation: false }) // vuex action
     }
-  }
+  },
 }
 </script>
 

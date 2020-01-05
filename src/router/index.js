@@ -34,12 +34,6 @@ export const constantRoutes = [
   {
     path: '/login',
     component: () => import('@/views/login/index'),
-    hidden: false
-  },
-
-  {
-    path: '/404',
-    component: () => import('@/views/404'),
     hidden: true
   },
 
@@ -56,38 +50,66 @@ export const constantRoutes = [
   },
   {
     path: '/location',
+    // name: '场地',
+    meta: { title: '场地', icon: 'form' },
     component: Layout,
+    redirect: '/location/info',
     children: [
       {
-        path: 'index',
+        path: 'info',
         name: 'Location',
+        component: () => import('@/views/siteDetail/index'),
+        meta: { title: '基本信息', icon: 'form' }
+      },
+      {
+        path: 'documents',
+        name: 'Documents',
         component: () => import('@/views/location/index'),
-        meta: { title: 'Location', icon: 'form' }
+        meta: { title: '文件管理', icon: 'form' }
       }
     ]
   },
   {
-    path: '/example',
+    path: '/devices',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    redirect: '/devices/info',
+    name: 'devices',
+    meta: { title: '设备', icon: 'form' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'overview',
+        name: 'devicesOverview',
+        component: () => import('@/views/devices/index'),
+        meta: { title: '设备状态', icon: 'tree' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'management',
+        name: 'devicesManagement',
+        component: () => import('@/views/location/index'),
+        meta: { title: '设备管理', icon: 'form' }
       }
     ]
   },
-
+  {
+    path: '/data',
+    component: Layout,
+    redirect: '/devices/realtime',
+    meta: { title: '数据', icon: 'data' },
+    children: [
+      {
+        path: 'realtime',
+        name: '实时数据',
+        component: () => import('@/views/location/index'),
+        meta: { title: '实时数据', icon: 'run' }
+      },
+      {
+        path: 'history',
+        // name: 'management',
+        component: () => import('@/views/location/index'),
+        meta: { title: '历史数据', icon: 'form' }
+      }
+    ]
+  },
   {
     path: '/form',
     component: Layout,
@@ -158,18 +180,42 @@ export const constantRoutes = [
       }
     ]
   },
-
   {
-    path: 'external-link',
+    path: '/example',
     component: Layout,
+    redirect: '/example/table',
+    name: 'Example',
+    meta: { title: 'Example', icon: 'example' },
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path: 'table',
+        name: 'Table',
+        component: () => import('@/views/table/index'),
+        meta: { title: 'Table', icon: 'table' }
+      },
+      {
+        path: 'tree',
+        name: 'Tree',
+        component: () => import('@/views/tree/index'),
+        meta: { title: 'Tree', icon: 'tree' }
       }
     ]
   },
-
+  // {
+  //   path: 'external-link',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+  //       meta: { title: 'External Link', icon: 'link' }
+  //     }
+  //   ]
+  // },
+  {
+    path: '/404',
+    component: () => import('@/views/404'),
+    hidden: true
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
