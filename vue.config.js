@@ -32,7 +32,7 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: port,
-    open: true,
+    // open: true, // alan
     overlay: {
       warnings: false,
       errors: true

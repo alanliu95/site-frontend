@@ -30,7 +30,7 @@ export default {
       return this.$store.state.app.sidebar // app.sidebar
     },
     device() {
-      return this.$store.state.app.device // app.devices
+      return this.$store.state.app.device // app.device
     },
     fixedHeader() {
       return this.$store.state.settings.fixedHeader // settings.fixedHeader

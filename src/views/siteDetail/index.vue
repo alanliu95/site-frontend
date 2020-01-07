@@ -9,7 +9,7 @@
     <div>id：{{ site.id }}</div>
     <div>经度：{{ site.longitude }}</div>
     <div>纬度：{{ site.latitude }}</div>
-<!--    <router-link to="/devices/info">设备</router-link>-->
+<!--    <router-link to="/device/info">设备</router-link>-->
 <!--    <router-link to="/location/files">文件</router-link>-->
   </div>
 </template>

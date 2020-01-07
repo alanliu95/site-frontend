@@ -51,7 +51,7 @@ export const constantRoutes = [
   {
     path: '/location',
     // name: '场地',
-    meta: { title: '场地', icon: 'form' },
+    meta: { title: '场地', icon: 'site' },
     component: Layout,
     redirect: '/location/info',
     children: [
@@ -70,16 +70,16 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/devices',
+    path: '/device',
     component: Layout,
-    redirect: '/devices/info',
+    redirect: '/device/info',
     name: 'devices',
-    meta: { title: '设备', icon: 'form' },
+    meta: { title: '设备', icon: 'chip' },
     children: [
       {
         path: 'overview',
         name: 'devicesOverview',
-        component: () => import('@/views/devices/index'),
+        component: () => import('@/views/device/index'),
         meta: { title: '设备状态', icon: 'tree' }
       },
       {
@@ -93,7 +93,7 @@ export const constantRoutes = [
   {
     path: '/data',
     component: Layout,
-    redirect: '/devices/realtime',
+    redirect: '/device/realtime',
     meta: { title: '数据', icon: 'data' },
     children: [
       {
