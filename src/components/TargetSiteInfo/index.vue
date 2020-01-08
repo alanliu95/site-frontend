@@ -11,7 +11,7 @@
         <el-button type="primary" size="mini" @click="reset">是</el-button>
       </div>
       <el-button slot="reference" type="primary" >
-        {{ Object.keys(this.$store.state.site.site).length===0?'未选定场地':this.$store.state.site.site.name }}
+        {{ Object.keys(this.$store.state.site.name).length===0?'未选定场地':this.$store.state.site.name }}
       </el-button>
     </el-popover>
   </div>
@@ -28,10 +28,9 @@ export default {
   methods: {
     reset() {
       this.visible = false
-      this.$store.dispatch('site/setSite', {}).then(() => {
-        // console.info('重置 store site成功')
+      this.$store.dispatch('site/setSite', {name:'',id:0}).then(() => {
       }).catch(() => {
-        console.info('重置 store site失败')
+        console.info('重置 store site obj失败')
       })
       this.$router.push('/location/documents')
     }

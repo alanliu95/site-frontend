@@ -11,7 +11,7 @@
     </el-select>
     <!--    <div>场地:{{JSON.parse(value)}}</div>-->
     <el-button type="primary" @click="setSite">确定</el-button>
-    <div>store:{{ JSON.stringify(site) }}</div>
+    <div>store:{{ siteInfo }}</div>
   </div>
 </template>
 
@@ -76,8 +76,8 @@
       // ...mapGetters([
       //   'site'
       // ])
-      site(){
-        return Object.keys(this.$store.state.site.site).length===0?'选取场地':this.$store.state.site.site
+      siteInfo(){
+        return this.$store.state.site.name==''?'选取场地':this.$store.state.site.name+' siteId'+this.$store.state.site.id
       }
     },
     mounted: function() {

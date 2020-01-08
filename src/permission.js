@@ -23,11 +23,22 @@ router.beforeEach(async(to, from, next) => {
   const hasToken = getToken()
 
   if (hasToken) {
+    // console.info('用户具有'+hasToken)
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
       next({ path: '/' })
       NProgress.done()
     } else {
+      // console.info('curr siteId'+store.getters['/site/id'])
+      if(store.getters['/site/id']==undefined){
+        let siteName = sessionStorage.getItem('siteName');
+        let siteId = sessionStorage.getItem('siteId');
+        // console.info('sessionStorage'+siteId+siteName)
+        if(siteId&&siteName){
+          store.dispatch('site/setSite',{name:siteName,id:siteId})
+        }
+      }
+
       const hasGetUserInfo = store.getters.name
       if (hasGetUserInfo) { // 判断是否已经拉取过用户信息
         next()

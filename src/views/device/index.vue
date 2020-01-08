@@ -1,9 +1,6 @@
 <template>
   <div class="app-container">
-    <div><h1>{{$store.state.site.site.name}}</h1></div>
-    <div>
-      {{$store.state.site.site}}
-    </div>
+    <div><h1>{{$store.state.site.name}}</h1></div>
     <div style="width: 800px">
       <el-table
         :data="devices"
@@ -58,9 +55,9 @@
       }
     },
     created() {
-      getTarSiteDevices(this.$store.state.site.site.id).then(response => { //这里的response是响应请求的body字段
+      getTarSiteDevices(this.$store.state.site.id).then(response => { //这里的response是响应请求的body字段
         this.temp = response.data
-        getTarSiteDeviceStatus(this.$store.state.site.site.id).then(body => {
+        getTarSiteDeviceStatus(this.$store.state.site.id).then(body => {
           let status = body.data
           let detail = JSON.parse(JSON.stringify(this.temp)) //对象深拷贝
           for (let i = 0, len = detail.length; i < len; i++) {
