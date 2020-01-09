@@ -38,6 +38,18 @@ export const constantRoutes = [
   },
 
   {
+    path: '/select',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: 'index',
+      name: 'Index',
+      component: () => import('@/views/location/index'),
+      meta: { title: '选取场地', icon: 'dashboard' }
+    }]
+  },
+
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
@@ -64,8 +76,8 @@ export const constantRoutes = [
       {
         path: 'document',
         name: 'Document',
-        component: () => import('@/views/location/index'),
-        meta: { title: '选取场地', icon: 'form' }
+        component: () => import('@/views/site/document/index'),
+        meta: { title: '文档管理', icon: 'form' }
       }
     ]
   },

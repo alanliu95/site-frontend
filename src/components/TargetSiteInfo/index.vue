@@ -32,7 +32,7 @@ export default {
       }).catch(() => {
         console.info('重置 store site obj失败')
       })
-      this.$router.push('/location/documents')
+      this.$router.push('/select/index')
     }
   }
 }
