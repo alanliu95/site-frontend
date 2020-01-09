@@ -55,9 +55,34 @@
       }
     },
     created() {
-      getTarSiteDevices(this.$store.state.site.id).then(response => { //这里的response是响应请求的body字段
-        this.temp = response.data
-        getTarSiteDeviceStatus(this.$store.state.site.id).then(body => {
+      this.request(this.$store.getters['site/id'])
+      // getTarSiteDevices(this.$store.state.site.id).then(response => { //这里的response是响应请求的body字段
+      //   this.temp = response.data
+      //   getTarSiteDeviceStatus(this.$store.state.site.id).then(body => {
+      //     let status = body.data
+      //     let detail = JSON.parse(JSON.stringify(this.temp)) //对象深拷贝
+      //     for (let i = 0, len = detail.length; i < len; i++) {
+      //       let deviceId = detail[i].id
+      //       if (status[deviceId] == undefined) {
+      //         detail[i]['online'] = null
+      //       } else {
+      //         detail[i]['online'] = JSON.stringify(status[deviceId])
+      //       }
+      //     }
+      //     this.devices = detail
+      //   }).catch((err) => {
+      //     console.error(err)
+      //   })
+      // }).catch((err) => {
+      //   console.error(err)
+      // })
+    },
+    methods: {
+      request(siteId) {
+        getTarSiteDevices(siteId).then(response => { //这里的response是响应请求的body字段
+          this.temp = response.data
+          return getTarSiteDeviceStatus(siteId)
+        }).then(body => {
           let status = body.data
           let detail = JSON.parse(JSON.stringify(this.temp)) //对象深拷贝
           for (let i = 0, len = detail.length; i < len; i++) {
@@ -72,11 +97,8 @@
         }).catch((err) => {
           console.error(err)
         })
-      }).catch((err) => {
-        console.error(err)
-      })
-    },
-    methods: {}
+      }
+    }
   }
 
   // {

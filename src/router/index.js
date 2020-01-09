@@ -49,21 +49,21 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/location',
+    path: '/site',
     // name: '场地',
     meta: { title: '场地', icon: 'site' },
     component: Layout,
-    redirect: '/location/info',
+    redirect: '/site/basic',
     children: [
       {
-        path: 'info',
-        name: 'Location',
-        component: () => import('@/views/siteDetail/index'),
+        path: 'basic',
+        name: 'Basic',
+        component: () => import('@/views/site/basic/index'),
         meta: { title: '基本信息', icon: 'form' }
       },
       {
-        path: 'documents',
-        name: 'Documents',
+        path: 'document',
+        name: 'Document',
         component: () => import('@/views/location/index'),
         meta: { title: '选取场地', icon: 'form' }
       }
