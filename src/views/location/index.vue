@@ -11,16 +11,11 @@
     </el-select>
     <!--    <div>场地:{{JSON.parse(value)}}</div>-->
     <el-button type="primary" @click="setSite">确定</el-button>
-    <div>store:{{ siteInfo }}</div>
   </div>
 </template>
 
 <script>
-/* eslint-disable */
-  import { mapGetters } from 'vuex'
   import { getAllSites } from '../../api/site'
-
-
   export default {
     name: 'Location',
     data() {
@@ -70,14 +65,6 @@
           type: 'success',
           position: 'bottom-right'
         });
-      }
-    },
-    computed: {
-      // ...mapGetters([
-      //   'site'
-      // ])
-      siteInfo(){
-        return this.$store.state.site.name==''?'选取场地':this.$store.state.site.name+' siteId'+this.$store.state.site.id
       }
     },
     mounted: function() {

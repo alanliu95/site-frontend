@@ -29,12 +29,13 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      // console.info('curr siteId'+store.getters['/site/id'])
-      if(store.getters['/site/id']==undefined){
+      console.debug('curr siteId: %s',store.getters['site/id'])
+      if(store.getters['site/id']==0){
         let siteName = sessionStorage.getItem('siteName');
         let siteId = sessionStorage.getItem('siteId');
-        // console.info('sessionStorage'+siteId+siteName)
+        console.debug('sessionStorage siteId: %s, siteName: %s',siteId,siteName)
         if(siteId&&siteName){
+          console.debug('加载sessionStorage 到 store site')
           store.dispatch('site/setSite',{name:siteName,id:siteId})
         }
       }
