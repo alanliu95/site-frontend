@@ -24,6 +24,9 @@ import '@/permission' // 添加router变化钩子函数，实现用户登录拦�
  * please remove it before going online! ! !
  */
 import { mockXHR } from '../mock'
+
+import axios from 'axios'
+
 // || process.env.NODE_ENV === 'development'
 if (process.env.NODE_ENV === 'production') {
   mockXHR()
@@ -35,6 +38,14 @@ Vue.use(ElementUI, { locale })
 // Vue.use(ElementUI)
 
 Vue.config.productionTip = false
+
+// vue对象添加静态变量 axios
+// Compatible with vue-resources
+Vue.prototype.$http = axios
+
+// vue对象添加静态变量 bus
+// Compatible with vue 1.0 message bus
+Vue.prototype.$bus = new Vue()
 
 new Vue({
   el: '#app',

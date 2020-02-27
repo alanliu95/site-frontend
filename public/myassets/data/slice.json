@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "105.924767",
+          "26.251054"
+        ]
+      },
+      "properties": {
+        "id": "1",
+        "name": "安顺阳光妇科医院",
+        "province": "贵州省",
+        "city": "安顺市",
+        "district": "西秀区",
+        "address": "中华北路与西水路交叉口路西",
+        "phone": "",
+        "google_map_id": "ChIJd57sOyAtxzYRrivDzjfGwxM",
+        "gaode_map_id": "B03550I6R8"
+      }
+    }
+  ]
+}
