@@ -12,6 +12,7 @@
       </div>
       <el-button slot="reference" type="primary" >
         {{ Object.keys(this.$store.state.site.name).length===0?'未选定场地':this.$store.state.site.name }}
+<!--        {{ this.$store.state.site.name==''?'未选定场地':this.$store.state.site.name }}-->
       </el-button>
     </el-popover>
   </div>

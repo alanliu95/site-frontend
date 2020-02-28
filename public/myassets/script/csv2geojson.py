@@ -3,7 +3,7 @@ import json
 import csv
 
 CSV_FILE = '../data/hospital.csv'
-GEOJSON_FILE = '../data/hospital.geojson'
+GEOJSON_FILE = '../data/site.geojson'
 # final feature list
 features_list = []
 
@@ -27,8 +27,8 @@ def generate_feature_data(hospital_data):
             "district": hospital_data["district"],
             "address": hospital_data["address"],
             "phone": hospital_data["phone"].strip(),
-            "google_map_id": hospital_data["google_map_id"],
-            "gaode_map_id": hospital_data['gaode_map_id'],
+            # "google_map_id": hospital_data["google_map_id"],
+            # "gaode_map_id": hospital_data['gaode_map_id'],
         },
     }
     return feature_data
@@ -45,9 +45,11 @@ def generate_geojson():
 def main():
     with open(CSV_FILE, 'r') as f:
         f_csv = csv.DictReader(f)
-        for hospital_data in f_csv:
+        for i,hospital_data in enumerate(f_csv):
             feature_data = generate_feature_data(hospital_data)
             features_list.append(feature_data)
+            if i==10:
+                break
 
     geojson_data = generate_geojson()
 

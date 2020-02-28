@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-container">
+  <div class="app-container">
     <!--   class=" app-container"-->
     <app-layout>
       <app-content slot="app-content"></app-content>

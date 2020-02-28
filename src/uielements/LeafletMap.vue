@@ -6,9 +6,10 @@
     import Leaflet from 'leaflet'
     import markerClusterGroup from 'leaflet.markercluster'
     import mapProvider from '../utilities/leaflet.MapProviders.js'
-    import easyButton from '../utilities/leaflet.EasyButton.vue'
+    import easyButton from  '../utilities/leaflet.EasyButton.vue'
 
     // const MAP_IMAGE_PATH = "//cdn.bootcss.com/leaflet/1.0.0-rc.2/images/";
+    //map icon img根路径
     const MAP_IMAGE_PATH = "/myassets/images/leaflet/";
 
     export default {
@@ -25,7 +26,7 @@
                     center: [37.5, 106],
                     minZoom: 3,
                     maxZoom: 18,
-                    attribution: "&copy; 高德地图",
+                    attribution: "",
                 },
             };
         },
@@ -40,7 +41,7 @@
         methods: {
             initMap() {
                 // need set default L.Icon.Default.imagePath
-                L.Icon.Default.imagePath = MAP_IMAGE_PATH;
+                // L.Icon.Default.imagePath = MAP_IMAGE_PATH;
 
                 this.map = L.map("leaflet-map",{
                     center: this.map_config.center,
@@ -89,9 +90,10 @@
             },
 
             onEachFeature(feature, layer) {
-                layer.bindPopup(feature.properties.name);
+                // layer.bindPopup(feature.properties.name);
+              var html="<a href=\"#/site/basic?from=leaflet\">"+feature.properties.name+"</a>"
+              layer.bindPopup(html);
             },
-
             updateMapData(map_data) {
                 if(map_data.features.length !== 0) {
                     this.addClusterLayer(map_data);

@@ -11,17 +11,18 @@
                     <h4>
                         <a @click.prevent="updateMapData(hospitalInfo)">
                             {{ hospitalInfo.properties.name }}
-                        </a>
+                        </a>&nbsp&nbsp&nbsp
+                      <button v-on:click="selectSite()" style="color: #a7292e">详细</button>
                     </h4>
                     <p><strong>地区:</strong>{{ hospitalInfo.properties.city }}{{ hospitalInfo.properties.district }}</p>
                     <p class="tooltip"><strong>地址:</strong>{{ hospitalInfo.properties.address | addressFilter }}
                         <span class="tooltiptext tooltip-top"
-                              v-if="hospitalInfo.properties.address.length > 12"
-                        >
+                              v-if="hospitalInfo.properties.address.length > 12">
                             {{ hospitalInfo.properties.address }}
                         </span>
                     </p>
                     <p><strong>电话:</strong>{{ hospitalInfo.properties.phone | phoneFilter}}</p>
+
                 </div>
             </div>
         </article>
@@ -51,6 +52,12 @@
     export default  {
         props: [ 'hospitalInfo' ],
         methods: {
+          selectSite(){
+            // console.debug(this.hospitalInfo)
+            this.$store.dispatch('site/setSite',{id:this.hospitalInfo.properties.id,name:this.hospitalInfo.properties.name}).catch((err)=>{
+              console.info('向store提交site失败')
+            })
+          },
             updateMapData(data) {
                 // update map data, need geojson format
                 let map_data = {

@@ -4,10 +4,10 @@
 
         <div v-if="totalPage">
 
-            <hospital-box v-for="hospital in hospital_show_list"
+            <site-box v-for="hospital in hospital_show_list"
                           :hospital-info="hospital" :key="hospital.properties.id"
             >
-            </hospital-box >
+            </site-box >
 
             <div class="columns is-mobile card-pagination">
                 <div class="column">
@@ -34,20 +34,20 @@
 
         <div v-else class="safe-area">
             <h4>
-                <span class="icon"><i class="fa fa-check"></i></span>此地区暂时安全
+                <span class="icon"><i class="fa fa-check"></i></span>此地区无登记场地
             </h4>
         </div>
     </section>
 </template>
 
 <script>
-    import HospitalBox from '../uielements/HospitalBox.vue'
+    import SiteBox from '../uielements/SiteBox.vue'
     import AreaSelectBox from '../uielements/AreaSelectBox.vue'
 
     const LIST_MAX_LEN = 4;
 
     export default {
-        components: { HospitalBox, AreaSelectBox },
+        components: { SiteBox, AreaSelectBox },
         data() {
             return {
                 hospital_list: [],

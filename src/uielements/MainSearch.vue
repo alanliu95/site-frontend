@@ -1,10 +1,10 @@
 <template>
     <div class="control has-icon" id="main-search">
-        <input type="text" class="input" placeholder="搜索莆田系医院、所在城市等" v-model="query"
-               @keydown.down="down" @keydown.up="up" @keydown.enter="hit" 
+        <input type="text" class="input" placeholder="搜索石化场地、所在城市等" v-model="query"
+               @keydown.down="down" @keydown.up="up" @keydown.enter="hit"
                @keydown.esc="reset" @blur="reset" @input="update"/>
         <i class="fa fa-search"></i>
-        <i class="fa fa-times icon-close" 
+        <i class="fa fa-times icon-close"
            v-show="query.length"
            @click="resetSearch()"
         ></i>
@@ -73,7 +73,7 @@
                     // set ui
                     this.reset();
                     this.query = item.properties.name;
-                    
+
                     // update map data, need geojson format
                     let map_data = {
                         type: 'FeatureCollection',
@@ -151,5 +151,5 @@
         color: white;
     }
 
-    
+
 </style>

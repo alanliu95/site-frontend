@@ -1,0 +1,290 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "安顺阳光妇科医院",
+        "district": "西秀区",
+        "phone": "",
+        "province": "贵州省",
+        "id": "1",
+        "city": "安顺市",
+        "address": "中华北路与西水路交叉口路西"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "105.924767",
+          "26.251054"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "安阳协和医院",
+        "district": "龙安区",
+        "phone": "0372-3661777",
+        "province": "河南省",
+        "id": "2",
+        "city": "安阳市",
+        "address": "文明大道西段85号"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "114.334916",
+          "36.090769"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "蚌埠澳美佳女子医院",
+        "district": "龙子湖区",
+        "phone": "+86 552 315 1111",
+        "province": "安徽省",
+        "id": "3",
+        "city": "蚌埠市",
+        "address": "蚌埠市龙子湖区交通路143号"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "117.377263",
+          "32.950353"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "包头都市妇产医院",
+        "district": "昆都仑区",
+        "phone": "0472-5988666;0472-5143311",
+        "province": "内蒙古自治区",
+        "id": "4",
+        "city": "包头市",
+        "address": "阿尔丁大街神华蓝天商厦对面(市政府阿尔丁广场西南道6号)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "109.838867",
+          "40.653687"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "包头生殖健康服务中心",
+        "district": "昆都仑区",
+        "phone": "0472-5914999;4000120982",
+        "province": "内蒙古自治区",
+        "id": "5",
+        "city": "包头市",
+        "address": "乌兰道7号小肥羊大厦往东50米"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "109.838068",
+          "40.659398"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "包头现代女子妇产医院",
+        "district": "青山区",
+        "phone": "0472-6969098;0472-6969120",
+        "province": "内蒙古自治区",
+        "id": "6",
+        "city": "包头市",
+        "address": "钢铁大街36号(万达广场斜对面)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "109.855748",
+          "40.655514"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "包头新世纪男科医院",
+        "district": "青山区",
+        "phone": "0472-5999999;0472-5109199",
+        "province": "内蒙古自治区",
+        "id": "7",
+        "city": "包头市",
+        "address": "少先路21号"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "109.870359",
+          "40.651305"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "宝鸡市第三人民医院",
+        "district": "金台区",
+        "phone": "0917-3412538;0917-3131325;13571162120",
+        "province": "陕西省",
+        "id": "8",
+        "city": "宝鸡市",
+        "address": "宏文路48号"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "107.210141",
+          "34.367326"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "宝鸡远大肛肠医院",
+        "district": "渭滨区",
+        "phone": "0917-3533101",
+        "province": "陕西省",
+        "id": "9",
+        "city": "宝鸡市",
+        "address": "迎宾路1号火车站向东50米"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "107.154276",
+          "34.372044"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "保定白癜风医院",
+        "district": "莲池区",
+        "phone": "0312-5930000;0312-5936666;4000312026",
+        "province": "河北省",
+        "id": "10",
+        "city": "保定市",
+        "address": "三丰中路379号(果品批发市场对过)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "115.493689",
+          "38.847368"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "保定东大肛肠医院",
+        "district": "莲池区",
+        "phone": "0312-5071007;0312-5071003",
+        "province": "河北省",
+        "id": "11",
+        "city": "保定市",
+        "address": "天威东路1266号(客运中心站)南行300米"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "115.542571",
+          "38.846561"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "保定京津医院",
+        "district": "唐县",
+        "phone": "0312-7551940",
+        "province": "河北省",
+        "id": "12",
+        "city": "保定市",
+        "address": "中山北大街28号"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "114.992841",
+          "38.758778"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "保定牡丹妇婴医院",
+        "district": "莲池区",
+        "phone": "0312-6796666;18633205622",
+        "province": "河北省",
+        "id": "13",
+        "city": "保定市",
+        "address": "东风东路335号"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "115.516924",
+          "38.865588"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "保定世纪协和医院",
+        "district": "莲池区",
+        "phone": "0312-2012222;0312-5918111",
+        "province": "河北省",
+        "id": "14",
+        "city": "保定市",
+        "address": "裕华西路666号"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "115.484515",
+          "38.8602"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "保定现代女子医院",
+        "district": "竞秀区",
+        "phone": "0312-5957777",
+        "province": "河北省",
+        "id": "15",
+        "city": "保定市",
+        "address": "七一西路555号(竞秀公园西行)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "115.457214",
+          "38.882481"
+        ]
+      }
+    }
+  ]
+}
