@@ -8,3 +8,10 @@ export function getAllSites() {
     method: 'get'
   })
 }
+export function uploadFile(form) {
+  return request({
+    url: URL_PREFIX+'/media',
+    method:'post',
+    form
+  })
+}

@@ -1,43 +1,17 @@
 <template>
   <div class="app-container">
-    <div><h1>{{$store.state.site.name}}</h1></div>
+    <div>
+      <h1>{{$store.state.site.name}}</h1>
+    </div>
     <div style="width: 800px">
-      <el-table
-        :data="devices"
-        stripe
-        border
-        style="width: 100%">
-        <el-table-column
-          prop="siteId"
-          label="siteId"
-          width="80">
-        </el-table-column>
-        <el-table-column
-          prop="id"
-          label="id"
-          width="80">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="name"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="token"
-          label="令牌">
-        </el-table-column>
-        <el-table-column
-          prop="devTypeName"
-          label="设备类型">
-        </el-table-column>
-        <el-table-column
-          prop="info"
-          label="info">
-        </el-table-column>
-        <el-table-column
-          prop="online"
-          label="online">
-        </el-table-column>
+      <el-table :data="devices" stripe border style="width: 100%">
+        <el-table-column prop="siteId" label="siteId" width="80"></el-table-column>
+        <el-table-column prop="id" label="id" width="80"></el-table-column>
+        <el-table-column prop="name" label="name" width="180"></el-table-column>
+        <el-table-column prop="token" label="令牌"></el-table-column>
+        <el-table-column prop="devTypeName" label="设备类型"></el-table-column>
+        <el-table-column prop="info" label="info"></el-table-column>
+        <el-table-column prop="online" label="online"></el-table-column>
       </el-table>
     </div>
   </div>

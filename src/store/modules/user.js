@@ -38,7 +38,7 @@ const actions = {
   },
 
   // get user info
-  getInfo({ commit, state }) { // todo 调用者未提供实参，不知工作机理
+  getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
         const { data } = response

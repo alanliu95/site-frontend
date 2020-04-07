@@ -40,7 +40,7 @@ router.beforeEach(async (to, from, next) => {
           store.dispatch('site/setSite', {name: siteName, id: siteId})
         }
       }
-
+      // 判断请求 是否来自leaflet 地图
       if(to.path==='/site/basic'&&to.query.from=='leaflet'){ //判断
           store.dispatch("site/setSite",{name:"ecust", id: 110})
       }
