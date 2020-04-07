@@ -1,43 +1,84 @@
 <template>
-    <section class="right-content">
-        <area-select-box></area-select-box>
+<!--    <section class="right-content">-->
+<!--        <area-select-box></area-select-box>-->
 
-        <div v-if="totalPage">
+<!--        <div v-if="totalPage">-->
 
-            <site-box v-for="hospital in hospital_show_list"
-                          :hospital-info="hospital" :key="hospital.properties.id"
-            >
-            </site-box >
+<!--            <site-box v-for="hospital in hospital_show_list"-->
+<!--                          :hospital-info="hospital" :key="hospital.properties.id"-->
+<!--            >-->
+<!--            </site-box >-->
 
-            <div class="columns is-mobile card-pagination">
-                <div class="column">
-                    <a class="button"
-                    :class=" {'is-disabled' : currentPage === 1 }"
-                    @click="updatePageList('prev')"
-                    >
-                        上一页
-                    </a>
-                </div>
-                <div class="column">
-                    <h2 class="pagination-title">{{ currentPage }} / {{ totalPage }} </h2>
-                </div>
-                <div class="column">
-                    <a class="button is-info is-pulled-right"
-                    :class=" {'is-disabled' : currentPage === totalPage }"
-                    @click="updatePageList('next')"
-                    >
-                        下一页
-                    </a>
-                </div>
-            </div>
+<!--            <div class="columns is-mobile card-pagination">-->
+<!--                <div class="column">-->
+<!--                    <a class="button"-->
+<!--                    :class=" {'is-disabled' : currentPage === 1 }"-->
+<!--                    @click="updatePageList('prev')"-->
+<!--                    >-->
+<!--                        上一页-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="column">-->
+<!--                    <h2 class="pagination-title">{{ currentPage }} / {{ totalPage }} </h2>-->
+<!--                </div>-->
+<!--                <div class="column">-->
+<!--                    <a class="button is-info is-pulled-right"-->
+<!--                    :class=" {'is-disabled' : currentPage === totalPage }"-->
+<!--                    @click="updatePageList('next')"-->
+<!--                    >-->
+<!--                        下一页-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div v-else class="safe-area">-->
+<!--            <h4>-->
+<!--                <span class="icon"><i class="fa fa-check"></i></span>此地区无登记场地-->
+<!--            </h4>-->
+<!--        </div>-->
+<!--    </section>-->
+
+  <section class="right-content">
+    <area-select-box></area-select-box>
+
+    <div v-if="totalPage">
+
+      <site-box v-for="hospital in hospital_show_list"
+                :hospital-info="hospital" :key="hospital.properties.id"
+      >
+      </site-box >
+
+      <div class="columns is-mobile card-pagination">
+        <div style="display: inline">
+          <a class="button"
+             :class=" {'is-disabled' : currentPage === 1 }"
+             @click="updatePageList('prev')"
+          >
+            上一页
+          </a>
         </div>
-
-        <div v-else class="safe-area">
-            <h4>
-                <span class="icon"><i class="fa fa-check"></i></span>此地区无登记场地
-            </h4>
+        <div style="display: inline">
+<!--          <h2 class="pagination-title">{{ currentPage }} / {{ totalPage }} </h2>-->
+          {{ currentPage }} / {{ totalPage }}
         </div>
-    </section>
+        <div style="display: inline">
+          <a class="button is-info is-pulled-right"
+             :class=" {'is-disabled' : currentPage === totalPage }"
+             @click="updatePageList('next')"
+          >
+            下一页
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div v-else class="safe-area">
+      <h4>
+        <span class="icon"><i class="fa fa-check"></i></span>此地区无登记场地
+      </h4>
+    </div>
+  </section>
 </template>
 
 <script>
