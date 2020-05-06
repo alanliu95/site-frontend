@@ -71,172 +71,108 @@ export const constantRoutes = [
         path: 'basic',
         name: 'Basic',
         component: () => import('@/views/site/basic/Layout'),
-        meta: { title: '基本信息', icon: 'form' }
+        meta: { title: '基本信息', icon: 'site' }
       },
       {
         path: 'docs',
         name: 'Docs',
         component: () => import('@/views/site/document/index'),
-        meta: { title: '文档管理', icon: 'form' }
+        meta: { title: '文档管理', icon: 'site' }
       }
     ]
   },
   {
     path: '/invest',
     // name: '场地',
-    meta: { title: '场调', icon: 'site' },
+    meta: { title: '场调', icon: 'eye-open' },
     component: Layout,
     redirect: '/invest/point',
     children: [
       {
         path: 'point',
-        name: 'Basic',
-        component: () => import('@/views/site/basic/Layout'),
-        meta: { title: '采样点', icon: 'form' }
+        name: 'Point',
+        component: () => import('@/views/invest/Point'),
+        meta: { title: '采样点', icon: 'eye-open' }
       },
       {
-        path: 'docs',
-        name: 'Docs',
-        component: () => import('@/views/site/document/index'),
-        meta: { title: '空间分布', icon: 'form' }
-      }
+        path: 'contamination',
+        name: 'Contamination',
+        component: () => import('@/views/invest/Contamination'),
+        meta: { title: '污染物', icon: 'eye-open'  }
+      },
+      {
+        path: 'evaluation',
+        name: 'Evaluation',
+        component: () => import('@/views/invest/Evaluation'),
+        meta: { title: '统计评价', icon: 'eye-open'  }
+      },
     ]
   },
   {
     path: '/device',
     component: Layout,
-    redirect: '/device/info',
-    name: 'devices',
+    redirect: '/device/management',
+    name: 'Device',
     meta: { title: '设备', icon: 'chip' },
     children: [
       {
-        path: 'overview',
-        name: 'devicesOverview',
+        path: 'management',
+        name: 'DevManage',
         component: () => import('@/views/device/index'),
-        meta: { title: '设备状态', icon: 'tree' }
+        meta: { title: '设备管理', icon: 'chip' }
       },
       {
-        path: 'management',
-        name: 'devicesManagement',
-        component: () => import('@/views/location/index'),
-        meta: { title: '设备管理', icon: 'form' }
+        path: 'status',
+        name: 'DevStatus',
+        component: () => import('@/views/device/Status'),
+        meta: { title: '实时状态', icon: 'chip' }
       }
     ]
   },
   {
     path: '/data',
     component: Layout,
-    redirect: '/device/realtime',
+    redirect: '/data/warning',
     meta: { title: '数据', icon: 'data' },
     children: [
       {
-        path: 'realtime',
-        name: '实时数据',
-        component: () => import('@/views/location/index'),
-        meta: { title: '实时数据', icon: 'run' }
+        path: 'warning',
+        name: 'Warning',
+        component: () => import('@/views/data/Warning'),
+        meta: { title: '预警报告', icon: 'data' }
       },
       {
         path: 'history',
         // name: 'management',
-        component: () => import('@/views/location/index'),
-        meta: { title: '历史数据', icon: 'form' }
+        component: () => import('@/views/data/History'),
+        meta: { title: '历史数据', icon: 'data' }
       }
     ]
   },
-  // {
-  //   path: '/form',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'Form',
-  //       component: () => import('@/views/form/index'),
-  //       meta: { title: 'Form', icon: 'form' }
-  //     }
-  //   ]
-  // },
-  //
-  // {
-  //   path: '/nested',
-  //   component: Layout,
-  //   redirect: '/nested/menu1',
-  //   name: 'Nested',
-  //   meta: {
-  //     title: 'Nested',
-  //     icon: 'nested'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'menu1',
-  //       component: () => import('@/views/nested/menu1/index'), // Parent router-view
-  //       name: 'Menu1',
-  //       meta: { title: 'Menu1' },
-  //       children: [
-  //         {
-  //           path: 'menu1-1',
-  //           component: () => import('@/views/nested/menu1/menu1-1'),
-  //           name: 'Menu1-1',
-  //           meta: { title: 'Menu1-1' }
-  //         },
-  //         {
-  //           path: 'menu1-2',
-  //           component: () => import('@/views/nested/menu1/menu1-2'),
-  //           name: 'Menu1-2',
-  //           meta: { title: 'Menu1-2' },
-  //           children: [
-  //             {
-  //               path: 'menu1-2-1',
-  //               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-  //               name: 'Menu1-2-1',
-  //               meta: { title: 'Menu1-2-1' }
-  //             },
-  //             {
-  //               path: 'menu1-2-2',
-  //               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-  //               name: 'Menu1-2-2',
-  //               meta: { title: 'Menu1-2-2' }
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           path: 'menu1-3',
-  //           component: () => import('@/views/nested/menu1/menu1-3'),
-  //           name: 'Menu1-3',
-  //           meta: { title: 'Menu1-3' }
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: 'menu2',
-  //       component: () => import('@/views/nested/menu2/index'),
-  //       meta: { title: 'menu2' }
-  //     }
-  //   ]
-  // },
   {
     path: '/system',
     component: Layout,
     redirect: '/system/user',
     name: 'System',
-    meta: { title: '系统管理', icon: 'example' },
+    meta: { title: '系统管理', icon: 'user' },
     children: [
       {
         path: 'user',
         name: 'User',
-        component: () => import('@/views/system/User'),
-        meta: { title: '用户管理', icon: 'table' }
+        component: () => import('@/views/system/MoUser'),
+        meta: { title: '用户管理', icon: 'user' }
       },
       {
-        path: 'company',
-        name: 'Company',
-        component: () => import('@/views/system/User'),
-        meta: { title: '单位管理', icon: 'table' }
+        path: 'role',
+        name: 'Role',
+        component: () => import('@/views/system/MoRole'),
+        meta: { title: '权限分配', icon: 'user' }
       },
       {
         path: 'test',
         name: 'Test',
-        component: () => import('@/views/system/Test'),
-        meta: { title: '测试页', icon: 'table' }
+        component: () => import('@/views/location/index'),
+        meta: { title: '测试页', icon: 'user' }
       }
       // {
       //   path: 'tree',
@@ -264,6 +200,77 @@ export const constantRoutes = [
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
+
+// {
+//   path: '/form',
+//   component: Layout,
+//   children: [
+//     {
+//       path: 'index',
+//       name: 'Form',
+//       component: () => import('@/views/form/index'),
+//       meta: { title: 'Form', icon: 'form' }
+//     }
+//   ]
+// },
+//
+// {
+//   path: '/nested',
+//   component: Layout,
+//   redirect: '/nested/menu1',
+//   name: 'Nested',
+//   meta: {
+//     title: 'Nested',
+//     icon: 'nested'
+//   },
+//   children: [
+//     {
+//       path: 'menu1',
+//       component: () => import('@/views/nested/menu1/index'), // Parent router-view
+//       name: 'Menu1',
+//       meta: { title: 'Menu1' },
+//       children: [
+//         {
+//           path: 'menu1-1',
+//           component: () => import('@/views/nested/menu1/menu1-1'),
+//           name: 'Menu1-1',
+//           meta: { title: 'Menu1-1' }
+//         },
+//         {
+//           path: 'menu1-2',
+//           component: () => import('@/views/nested/menu1/menu1-2'),
+//           name: 'Menu1-2',
+//           meta: { title: 'Menu1-2' },
+//           children: [
+//             {
+//               path: 'menu1-2-1',
+//               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+//               name: 'Menu1-2-1',
+//               meta: { title: 'Menu1-2-1' }
+//             },
+//             {
+//               path: 'menu1-2-2',
+//               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+//               name: 'Menu1-2-2',
+//               meta: { title: 'Menu1-2-2' }
+//             }
+//           ]
+//         },
+//         {
+//           path: 'menu1-3',
+//           component: () => import('@/views/nested/menu1/menu1-3'),
+//           name: 'Menu1-3',
+//           meta: { title: 'Menu1-3' }
+//         }
+//       ]
+//     },
+//     {
+//       path: 'menu2',
+//       component: () => import('@/views/nested/menu2/index'),
+//       meta: { title: 'menu2' }
+//     }
+//   ]
+// },
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support

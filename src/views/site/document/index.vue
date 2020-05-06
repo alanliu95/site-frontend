@@ -53,7 +53,7 @@
             v-model="form.description">
           </el-input>
         </el-form-item>
-        <el-form-item label="文件描述">
+        <el-form-item label="文件选取">
           <el-upload
             action=""
             :limit="1"
@@ -89,27 +89,27 @@
           {
             id: 1,
             name: '调查报告',
-            type: '图像',
+            type: '文档',
             datetime: new Date().toUTCString(),
             description: "调查结果",
             path: "/doc/123"
           },
-          {
-            id: 1,
-            name: '调查报告',
-            type: '图像',
-            datetime: new Date().toUTCString(),
-            description: "调查结果",
-            path: "/doc/123"
-          },
-          {
-            id: 1,
-            name: '调查报告',
-            type: '图像',
-            datetime: new Date().toUTCString(),
-            description: "调查结果",
-            path: "/doc/123"
-          },
+          // {
+          //   id: 1,
+          //   name: '调查报告',
+          //   type: '文档',
+          //   datetime: new Date().toUTCString(),
+          //   description: "调查结果",
+          //   path: "/doc/123"
+          // },
+          // {
+          //   id: 1,
+          //   name: '调查报告',
+          //   type: '文档',
+          //   datetime: new Date().toUTCString(),
+          //   description: "调查结果",
+          //   path: "/doc/123"
+          // },
         ],
         // docName: '',
         // doctype: '',

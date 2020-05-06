@@ -15,6 +15,7 @@ const client_secret='123123'
 //     data
 //   })
 // }
+
 export function login(data) {
   return request({
     url: ACCOUNT_PREFIX + '/login',
@@ -22,6 +23,13 @@ export function login(data) {
     data
   })
 }
+
+// export function login(data) {
+//   return new Promise((resolve, reject) => {
+//     console.info('login')
+//     resolve({code:200,msg:null,data:"123456"})
+//   })
+// }
 
 export function getInfo(token) {
   return request({

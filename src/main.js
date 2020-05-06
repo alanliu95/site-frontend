@@ -26,11 +26,12 @@ import '@/permission' // 添加router变化钩子函数，实现用户登录拦�
 import { mockXHR } from '../mock'
 
 import axios from 'axios'
-
+import echarts from 'echarts'
 // || process.env.NODE_ENV === 'development'
-if (process.env.NODE_ENV === 'production') {
-  mockXHR()
-}
+// if (process.env.NODE_ENV === 'production') {
+//   mockXHR()
+// }
+
 
 // set ElementUI lang to EN
 // Vue.use(ElementUI, { locale })
@@ -46,6 +47,10 @@ Vue.prototype.$http = axios
 // vue对象添加静态变量 bus
 // Compatible with vue 1.0 message bus
 Vue.prototype.$bus = new Vue()
+
+// 引入echarts
+
+Vue.prototype.$echarts = echarts
 
 new Vue({
   el: '#app',

@@ -3,10 +3,10 @@
     <!--工具栏-->
     <div style="float:left;padding-top:10px;padding-left:15px;">
       <el-form :inline="true" :model="filters" :size="size">
-        <el-form-item label="设备名">
-          <el-input v-model="filters.name" placeholder="请输入设备名"></el-input>
+        <el-form-item label="污染物名称">
+          <el-input v-model="filters.name" placeholder="请输入污染物名称"></el-input>
         </el-form-item>
-        <el-form-item label="设备类型">
+        <el-form-item label="污染物类型">
           <el-select v-model="filters.type" placeholder="请选择">
             <el-option label="重金属和无机物" value="重金属和无机物"></el-option>
             <el-option label="多环芳烃" value="多环芳烃"></el-option>
@@ -14,9 +14,9 @@
           </el-select>
         </el-form-item>
 
-<!--        <el-form-item label="采样点编号">-->
-<!--          <el-input v-model="filters.ponitid" placeholder="请输入采样点编号"></el-input>-->
-<!--        </el-form-item>-->
+        <el-form-item label="采样点编号">
+          <el-input v-model="filters.ponitid" placeholder="请输入采样点编号"></el-input>
+        </el-form-item>
 
         <el-form-item>
           <el-button icon="fa fa-search" label="查找" type="primary" @click="myAlert('未实现')">
@@ -25,7 +25,7 @@
         </el-form-item>
         <el-form-item>
           <el-button icon="fa fa-plus" @click="dialogVisible=true" type="primary">
-            添加
+            批量添加
           </el-button>
         </el-form-item>
       </el-form>
@@ -112,10 +112,9 @@
                          :fixed="column.fixed" :key="column.prop" :type="column.type" :formatter="column.formatter"
                          :sortable="column.sortable==null?true:column.sortable">
         </el-table-column>
-        <el-table-column   label="操作" width="300" fixed="right" header-align="center" align="center">
+        <el-table-column label="操作" width="185" fixed="right" header-align="center" align="center">
           <template slot-scope="scope">
             <div>
-              <el-button icon="el-icon-odometer"  :size="size" >状态</el-button>
               <el-button icon="fa fa-edit" :size="size">编辑</el-button>
               <el-button icon="fa fa-trash" :size="size" type="danger">删除</el-button>
             </div>
@@ -138,10 +137,22 @@
 </template>
 
 <script>
+  import PopupTreeInput from "@/components/PopupTreeInput"
+  import KtTable from "@/views/Core/KtTable"
+  import KtButton from "@/views/Core/KtButton"
+  import TableColumnFilterDialog from "@/views/Core/TableColumnFilterDialog"
+  import {format} from "@/utils/datetime"
+  import {userFindPage} from "../../api/system";
   import {getUsersByPage} from "../../api/user";
-
+  // import { userFindPage } from '@/api/system'
   export default {
-    name: 'index',
+    name: "Contamination",
+    components: {
+      PopupTreeInput,
+      KtTable,
+      KtButton,
+      TableColumnFilterDialog
+    },
     data() {
       return {
         roleOptions: [{
@@ -161,74 +172,113 @@
         pageResult: {
           "pageNum": 1,
           "pageSize": 8,
-          "totalSize": 4,
+          "totalSize": 60,
           "content": [
             {
               "id": 1,
-              "siteId": 1,
-              "name": "desktop-alan",
-              "token": "desktop-alan",
-              "devType": "dell工作站",
-              "location":"实验七楼服务器机柜",
-              "longitude": 121.424055,
-              "latitude": 31.143036,
-              "info": "windows10工作站"
-            },
-            {
+              "pointid": 1,
+              "name": "砷",
+              "cas": "7440-38-2",
+              "concentration": 35.0,
+              "controlVal": 140.0,
+              "screeningVal": 60.0,
+              "unit": "mg/kg",
+              "type": "重金属和无机物"
+            }, {
               "id": 2,
-              "siteId": 1,
-              "name": "ubuntu_14th",
-              "token": "ubuntu_14th",
-              "devType": "dell服务器",
-              "location":"实验七楼实验桌",
-              "longitude": 121.424055,
-              "latitude": 31.143036,
-              "info": "k8s集群node节点"
-            },
-            {
+              "pointid": 1,
+              "name": "镉",
+              "cas": "7440-43-9",
+              "concentration": 55.0,
+              "controlVal": 172.0,
+              "screeningVal": 65.0,
+              "unit": "mg/kg",
+              "type": "重金属和无机物"
+            }, {
               "id": 3,
-              "siteId": 1,
-              "name": "vm-ubuntu16",
-              "token": "vm-ubuntu16",
-              "devType": "dell服务器",
-              "location":"实验七楼服务器机柜",
-              "longitude": 121.424055,
-              "latitude": 31.143036,
-              "info": "k8s集群master节点"
-            },
-            {
+              "pointid": 1,
+              "name": "铬",
+              "cas": "18540-29-9",
+              "concentration": 6.0,
+              "controlVal": 78.0,
+              "screeningVal": 5.7,
+              "unit": "mg/kg",
+              "type": "重金属和无机物"
+            }, {
               "id": 4,
-              "siteId": 1,
-              "name": "pi",
-              "token": "pi",
-              "devType": "树莓派",
-              "location":"实验七楼服务器机柜",
-              "longitude": 121.424055,
-              "latitude": 31.143036,
-              "info": "树莓派，卡片式电脑，基于ARM架构设计。运行Linux操作系统。项目用作MQTT设备模拟器"
+              "pointid": 1,
+              "name": "铜",
+              "cas": "7440-50-8",
+              "concentration": 7500.0,
+              "controlVal": 36000.0,
+              "screeningVal": 18000.0,
+              "unit": "mg/kg",
+              "type": "重金属和无机物"
+            }, {
+              "id": 5,
+              "pointid": 1,
+              "name": "甲苯",
+              "cas": "108-88-3",
+              "concentration": 1300.0,
+              "controlVal": 1200.0,
+              "screeningVal": 1200.0,
+              "unit": "mg/kg",
+              "type": "苯系物"
+            }, {
+              "id": 6,
+              "pointid": 1,
+              "name": "间二甲苯",
+              "cas": "108-38-3",
+              "concentration": 600.0,
+              "controlVal": 570.0,
+              "screeningVal": 570.0,
+              "unit": "mg/kg",
+              "type": "苯系物"
+            }, {
+              "id": 7,
+              "pointid": 1,
+              "name": "对二甲苯",
+              "cas": "106-42-3",
+              "concentration": 475.0,
+              "controlVal": 570.0,
+              "screeningVal": 570.0,
+              "unit": "mg/kg",
+              "type": "苯系物"
+            }, {
+              "id": 8,
+              "pointid": 1,
+              "name": "乙苯",
+              "cas": "100-41-4",
+              "concentration": 30.0,
+              "controlVal": 280.0,
+              "screeningVal": 28.0,
+              "unit": "mg/kg",
+              "type": "苯系物"
             },
             // {
-            //   "id": 6,
-            //   "siteId": 1,
-            //   "name": "mk60",
-            //   "token": "mk60",
-            //   "devType": 4,
-            //   "longitude": null,
-            //   "latitude": null,
-            //   "info": null
-            // },
-            // {
-            //   "id": 7,
-            //   "siteId": 1,
-            //   "name": "stm32",
-            //   "token": "stm32",
-            //   "devType": 4,
-            //   "longitude": null,
-            //   "latitude": null,
-            //   "info": null
+            //   "id": 9,
+            //   "pointid": 1,
+            //   "name": "萘",
+            //   "cas": "91-20-3",
+            //   "concentration": 75.0,
+            //   "controlVal": 700.0,
+            //   "screeningVal": 70.0,
+            //   "unit": "mg/kg",
+            //   "type": "多环芳烃"
+            // }, {
+            //   "id": 10,
+            //   "pointid": 1,
+            //   "name": "䓛",
+            //   "cas": "91-20-3",
+            //   "concentration": 1250.0,
+            //   "controlVal": 12900.0,
+            //   "screeningVal": 1293.0,
+            //   "unit": "mg/kg",
+            //   "type": "多环芳烃"
             // }
           ]
-        },
+        }, //请求结果
+
         dialogVisible: false, // 新增编辑界面是否显示
         dataForm: {  //弹窗表单数据
           id: 0,
@@ -241,7 +291,7 @@
           // status: 1,
           // userRoles: []
         },
-        selections: [],  // 列表选中列
+        // selections: [],  // 列表选中列
         align: {  // 文本对齐方式
           type: String,
           default: 'left'
@@ -369,26 +419,16 @@
 
       // 处理表格列过滤显示
       initColumns: function () {
-
-          // "id": 5,
-          // "siteId": 1,
-          // "name": "pi",
-          // "token": "pi",
-          // "devType": "dell服务器",
-          // "longitude": 31.146,
-          // "latitude": 121.421,
-          // "info": "树莓派"
         this.columns = [
-          {prop: "id", label: "ID", minWidth: 30},
-          {prop: "name", label: "设备名", minWidth: 60},
-          // {prop: "siteId", label: "场地ID", minWidth: 50},
-          {prop: "token", label: "令牌", minWidth: 60},
-          {prop: "devType", label: "设备类型", minWidth: 60},
-          {prop: "location", label: "位置", minWidth: 80},
-          {prop: "longitude", label: "经度", minWidth: 50},
-          {prop: "latitude", label: "纬度", minWidth: 50},
-          {prop: "info", label: "描述", minWidth: 80},
-
+          {prop: "id", label: "ID", minWidth: 50},
+          {prop: "pointid", label: "采样点ID", minWidth: 50},
+          {prop: "name", label: "名称", minWidth: 100},
+          {prop: "cas", label: "CAS编号", minWidth: 80},
+          {prop: "type", label: "类型", minWidth: 100},
+          {prop: "concentration", label: "浓度", minWidth: 50},
+          {prop: "unit", label: "单位", minWidth: 50},
+          {prop: "screeningVal", label: "筛选值", minWidth: 80},
+          {prop: "controlVal", label: "管制值", minWidth: 80}
         ]
         this.filterColumns = JSON.parse(JSON.stringify(this.columns));
       }
@@ -403,3 +443,4 @@
 <style scoped>
 
 </style>
+

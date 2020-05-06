@@ -4,15 +4,15 @@
     <div class="toolbar" style="float:left;padding-top:10px;padding-left:15px;">
       <el-form :inline="true" :model="filters" :size="size">
         <el-form-item>
-          <el-input v-model="filters.username" placeholder="用户名"></el-input>
+          <el-input v-model="filters.username" placeholder="角色名"></el-input>
         </el-form-item>
         <el-form-item>
-          <kt-button icon="fa fa-search" label="查找" perms="sys:role:view" type="primary"
-                     @click="myAlert('未实现')"/>
+          <el-button icon="fa fa-search" label="查找"  type="primary" @click="myAlert('未实现')">
+            查找</el-button>
         </el-form-item>
         <el-form-item>
-          <kt-button icon="fa fa-plus" label="添加" perms="sys:user:add" type="primary"
-                     @click="handleAdd"/>
+          <el-button icon="fa fa-plus" @click="dialogVisible=true" type="primary">
+            添加</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -21,10 +21,10 @@
         <el-form-item>
           <el-button-group>
             <el-tooltip content="刷新" placement="top">
-              <el-button icon="fa fa-refresh" @click="FindPage()"></el-button>
+              <el-button icon="fa fa-refresh" @click="myAlert('未实现')"></el-button>
             </el-tooltip>
             <el-tooltip content="列显示" placement="top">
-              <el-button icon="fa fa-filter" @click="displayFilterColumnsDialog"></el-button>
+              <el-button icon="fa fa-filter" @click="myAlert('未实现')"></el-button>
             </el-tooltip>
             <!-- <el-tooltip content="导出" placement="top">
               <el-button icon="fa fa-file-excel-o"></el-button>
@@ -37,18 +37,10 @@
 <!--                                  @handleFilterColumns="handleFilterColumns">-->
 <!--      </table-column-filter-dialog>-->
     </div>
-    <!--表格显示列筛选界面-->
-    <table-column-filter-dialog ref="tableColumnFilterDialog" :columns="columns"
-                                @handleFilterColumns="handleFilterColumns">
-    </table-column-filter-dialog>
-    <!--表格内容栏-->
-    <kt-table :height="tableMaxHeight" permsEdit="sys:user:edit" permsDelete="sys:user:delete" :data="pageResult"
-              :columns="filterColumns"
-              @findPage="findPage" @handleEdit="handleEdit" @handleDelete="handleDelete">
-    </kt-table>
-    <!--新增编辑界面-->
-    <el-dialog :title="operation?'添加新用户':'更新用户'" width="40%" :visible.sync="dialogVisible" :close-on-click-modal="false">
-      <el-form :model="dataForm" label-width="80px" :rules="dataFormRules" ref="dataForm" :size="size"
+
+
+    <el-dialog title='添加新角色' width="40%" :visible.sync="dialogVisible" :close-on-click-modal="false">
+      <el-form :model="dataForm" label-width="80px"  ref="dataForm" :size="size"
                label-position="right">
         <el-form-item label="ID" prop="id" v-if="false">
           <el-input v-model="dataForm.id" :disabled="true" auto-complete="off"></el-input>
@@ -56,6 +48,17 @@
         <el-form-item label="用户名" prop="name">
           <el-input v-model="dataForm.username" auto-complete="off"></el-input>
         </el-form-item>
+        <el-form-item label="角色">
+          <el-select size="medium" v-model="dataForm.roleNames" multiple placeholder="请选择">
+            <el-option
+              v-for="item in roleOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+
         <el-form-item label="密码" prop="password">
           <el-input v-model="dataForm.password" type="password" auto-complete="off"></el-input>
         </el-form-item>
@@ -79,9 +82,40 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button :size="size" @click.native="dialogVisible = false">取消</el-button>
-        <el-button :size="size" type="primary" @click.native="submitForm" :loading="editLoading">提交</el-button>
+        <el-button :size="size" type="primary"  >提交</el-button>
       </div>
     </el-dialog>
+
+    <div>
+      <!--表格栏-->
+      <el-table :data="pageResult.content" :highlight-current-row="highlightCurrentRow"
+                element-loading-text="加载" :border="border" :stripe="stripe"
+                :show-overflow-tooltip="showOverflowTooltip" :max-height="maxHeight" :height="height" :size="size" :align="align" style="width:100%;" >
+        <el-table-column type="selection" width="40" ></el-table-column>
+        <el-table-column v-for="column in filterColumns" header-align="center" align="center"
+                         :prop="column.prop" :label="column.label" :width="column.width" :min-width="column.minWidth"
+                         :fixed="column.fixed" :key="column.prop" :type="column.type" :formatter="column.formatter"
+                         :sortable="column.sortable==null?true:column.sortable">
+        </el-table-column>
+        <el-table-column label="操作" width="185" fixed="right"  header-align="center" align="center">
+          <template slot-scope="scope">
+            <div>
+              <el-button icon="fa fa-edit" :size="size" >编辑</el-button>
+              <el-button icon="fa fa-trash" :size="size" type="danger" >删除</el-button>
+            </div>
+          </template>
+        </el-table-column>
+      </el-table>
+      <!--分页栏-->
+      <div class="toolbar" style="padding:10px;">
+        <el-button   :size="size" type="danger"
+                   disabled="false" style="float:left;">批量删除</el-button>
+        <el-pagination layout="total, prev, pager, next, jumper"
+                       :current-page="pageRequest.pageNum" :page-size="pageRequest.pageSize" :total="pageResult.totalSize" style="float:right;">
+        </el-pagination>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -103,6 +137,22 @@
     },
     data() {
       return {
+        roleOptions: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],
         size: 'small',
         filters: {  //接收名字搜索栏的输入内容
           username: ''
@@ -110,34 +160,85 @@
         columns: [], //ktable 可显示的所有列
         filterColumns: [],
         pageRequest: {pageNum: 1, pageSize: 8},
-        pageResult: {}, //请求结果
+        pageResult:  {
+            "pageNum": 1,
+            "pageSize": 8,
+            "totalSize": 2,
+            "content": [
+              {
+                "id": 37,
+                "name": "超级管理员",
+                "enname": "ROLE_ADMIN",
+                "description": "超级管理员",
+                "created": "2019-03-27T04:15:36",
+                "updated": "2019-03-27T04:15:36",
+                "perms": "查看用户,新增用户,编辑用户,删除用户"
+              },
+              {
+                "id": 38,
+                "name": "普通用户",
+                "enname": "ROLE_USER",
+                "description": "超级管理员",
+                "created": "2020-03-27T04:15:36",
+                "updated": "2020-03-27T04:15:36",
+                "perms": "查看用户,编辑用户"
+              },
+            ]
+          }, //请求结果
 
-        operation: false, // true:新增, false:编辑
         dialogVisible: false, // 新增编辑界面是否显示
-        editLoading: false,
-        dataFormRules: {
-          username: [
-            {required: true, message: '请输入用户名', trigger: 'blur'}
-          ]
-        },
-        // 新增编辑界面数据
-        dataForm: {
+        dataForm: {  //弹窗表单数据
           id: 0,
-          username: '名字',
+          name: '名字',
           password: '密码',
           organization: "组织",
           email: 'test@qq.com',
           phone: '13889700023',
+          roleNames:[]
           // status: 1,
           // userRoles: []
         },
-        // deptData: [],
-        // deptTreeProps: {
-        //   label: 'name',
-        //   children: 'children'
+        // selections: [],  // 列表选中列
+        // size: { // 尺寸样式
+        //   type: String,
+        //   default: 'mini'
         // },
-        // roles: []
-        tableMaxHeight:400
+        align: {  // 文本对齐方式
+          type: String,
+          default: 'left'
+        },
+        maxHeight: {  // 表格最大高度
+          type: Number,
+          default: 500
+        },
+        height: {  // 表格最大高度
+          type: Number,
+          default: 250
+        },
+        // showOperation: {  // 是否显示操作组件
+        //   type: Boolean,
+        //   default: true
+        // },
+        border: {  // 是否显示边框
+          type: Boolean,
+          default: true
+        },
+        stripe: {  // 是否显示斑马线
+          type: Boolean,
+          default: true
+        },
+        highlightCurrentRow: {  // // 是否高亮当前行
+          type: Boolean,
+          default: true
+        },
+        showOverflowTooltip: {  // 是否单行显示
+          type: Boolean,
+          default: true
+        },
+        showBatchDelete: {  // 是否显示操作组件
+          type: Boolean,
+          default: true
+        }
       }
     },
     methods: {
@@ -146,7 +247,7 @@
       },
 
       findPage: function (data) {
-        //若无null 则是刷新请求
+        //若为null 则是刷新请求
         if (data !== null) {
           this.pageRequest = data.pageRequest
         }
@@ -154,23 +255,12 @@
           this.pageResult=res.data
         }).then(data != null ? data.callback : '')
 
-        // console.debug(this.pageRequest)
-        // console.debug(JSON.stringify(this.pageResult))
-        // data != null ? data.callback : ''
 
       },
 
-
-      // 加载用户角色信息
-      // findUserRoles: function () {
-      //   this.$api.role.findAll().then((res) => {
-      //     // 加载角色集合
-      //     this.roles = res.data
-      //   })
-      // },
       // 批量删除
       handleDelete: function (data) {
-        this.$api.user.batchDelete(data.params).then(data != null ? data.callback : '')
+        // this.$api.user.batchDelete(data.params).then(data != null ? data.callback : '')
       },
 
       // 显示新增界面
@@ -179,7 +269,7 @@
         this.operation = true
         this.dataForm = {
           id: 0,
-          username: '名字',
+          name: '名字',
           password: '密码',
           organization: "单位",
           email: 'test@qq.com',
@@ -190,21 +280,13 @@
       // 显示编辑界面
       handleEdit: function (params) {
         this.dialogVisible = true
-        this.operation = false
-        console.debug(params)
-        this.dataForm = Object.assign({}, params.row)
-        // let userRoles = []
-        // for (let i = 0, len = params.row.userRoles.length; i < len; i++) {
-        //   userRoles.push(params.row.userRoles[i].roleId)
-        // }
-        // this.dataForm.userRoles = userRoles
       },
       // 编辑
       submitForm: function () {
         this.$refs.dataForm.validate((valid) => {
           if (valid) {
             this.$confirm('确认提交吗？', '提示', {}).then(() => {
-              this.editLoading = true
+              // this.editLoading = true
               let params = Object.assign({}, this.dataForm)
               // let userRoles = []
               // for (let i = 0, len = params.userRoles.length; i < len; i++) {
@@ -216,7 +298,7 @@
               // }
               // params.userRoles = userRoles
               this.$api.user.save(params).then((res) => {
-                this.editLoading = false
+                // this.editLoading = false
                 if (res.code == 200) {
                   this.$message({message: '操作成功', type: 'success'})
                   this.dialogVisible = false
@@ -245,24 +327,16 @@
       dateFormat: function (row, column, cellValue, index) {
         return format(row[column.property])
       },
-      // 处理表格列过滤显示
-      displayFilterColumnsDialog: function () {
-        this.$refs.tableColumnFilterDialog.setDialogVisible(true)
-      },
-      // 处理表格列过滤显示
-      handleFilterColumns: function (data) {
-        this.filterColumns = data.filterColumns
-        this.$refs.tableColumnFilterDialog.setDialogVisible(false)
-      },
+
       // 处理表格列过滤显示
       initColumns: function () {
         this.columns = [
           {prop: "id", label: "ID", minWidth: 50},
-          {prop: "username", label: "用户名", minWidth: 120},
-          {prop: "organization", label: "机构", minWidth: 120},
-          // {prop: "roleNames", label: "角色", minWidth: 100},
-          {prop: "email", label: "邮箱", minWidth: 120},
-          {prop: "phone", label: "手机", minWidth: 100},
+          {prop: "name", label: "角色", minWidth: 80},
+          {prop: "enname", label: "英文名", minWidth: 120},
+          {prop: "description", label: "描述", minWidth: 100},
+          {prop: "perms", label: "权限集合", minWidth: 100},
+          // {prop: "phone", label: "手机", minWidth: 100},
           // {prop: "status", label: "状态", minWidth: 70},
 
           {prop:"created", label:"创建时间", minWidth:120, formatter:this.dateFormat}

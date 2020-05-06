@@ -26,9 +26,7 @@
       // }
       return {
         visible:true,
-        options: [{id:1,name:'华理实验七楼'},
-                  {id:2,name:'南京某化工企业'}
-          ],
+        options: [],
         value: ''
       }
     },
@@ -69,8 +67,8 @@
         });
       }
     },
-    mounted() {
-      //this.getSites()
+    mounted: function() {
+      this.getSites()
     }
     // watch: {
     //   $route: {

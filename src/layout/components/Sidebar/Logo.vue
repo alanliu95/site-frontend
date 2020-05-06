@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      title: '华东理工大学', // Vue Admin Template
+      title: '石化类污染场地管理系统', // Vue Admin Template
       logo: 'https://www.ecust.edu.cn/_upload/tpl/01/6e/366/template366/favicon.ico'
       //         <img class="pic-404__parent" src="@/assets/404_images/404.png" alt="404">
       // logo: 'https://www.ecust.edu.cn/_upload/tpl/01/6e/366/template366/images/logo.png'

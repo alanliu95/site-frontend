@@ -10,25 +10,19 @@
         :fixed="column.fixed" :key="column.prop" :type="column.type" :formatter="column.formatter"
         :sortable="column.sortable==null?true:column.sortable">
       </el-table-column>
-<!--      <el-table-column label="操作" width="185" fixed="right" v-if="showOperation" header-align="center" align="center">-->
-<!--        <template slot-scope="scope">-->
-<!--          <div>-->
-<!--            <kt-button icon="fa fa-edit" label="编辑" :perms="permsEdit" :size="size" @click="handleEdit(scope.$index, scope.row)" />-->
-<!--            <kt-button icon="fa fa-trash" label="删除" :perms="permsDelete" :size="size" type="danger" @click="handleDelete(scope.$index, scope.row)" />-->
-<!--          </div>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-      <el-table-column  fixed="right" label="操作" width="100">
+      <el-table-column label="操作" width="185" fixed="right" v-if="showOperation" header-align="center" align="center">
         <template slot-scope="scope">
-          <el-button type="text" size="small">查看</el-button>
-          <el-button type="text" size="small">编辑</el-button>
+          <div>
+            <kt-button icon="fa fa-edit" label="编辑" :perms="permsEdit" :size="size" @click="handleEdit(scope.$index, scope.row)" />
+            <kt-button icon="fa fa-trash" label="删除" :perms="permsDelete" :size="size" type="danger" @click="handleDelete(scope.$index, scope.row)" />
+          </div>
         </template>
       </el-table-column>
-<!--      <el-table-column-->
-<!--        fixed-->
-<!--        prop="id"-->
-<!--        label="日期"-->
-<!--        width="150">-->
+<!--      <el-table-column  fixed="right" label="操作" width="100">-->
+<!--        <template slot-scope="scope">-->
+<!--          <el-button type="text" size="small">查看</el-button>-->
+<!--          <el-button type="text" size="small">编辑</el-button>-->
+<!--        </template>-->
 <!--      </el-table-column>-->
     </el-table>
     <!--分页栏-->
