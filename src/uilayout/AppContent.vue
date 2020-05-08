@@ -16,7 +16,8 @@
         data () {
             return {
                 init_content_data: null,
-                data_url: '/myassets/data/hospital.geojson',
+                 data_url: '/myassets/data/myhospital.geojson',
+              //data_url: '/myassets/data/hospital.geojson',
             };
         },
         methods: {

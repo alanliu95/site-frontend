@@ -69,7 +69,7 @@
     data() {
       return {
         name:'华理实验七楼',
-        state:'使用中',
+        state:'生产经营中',
         location: '上海徐汇区梅陇路',
         longitude:121.431755,
         latitude:31.151036,

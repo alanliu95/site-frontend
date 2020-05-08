@@ -1,4 +1,43 @@
 <template>
+  <section class="right-content">
+    <area-select-box></area-select-box>
+
+    <div v-if="totalPage">
+
+      <my-site-box v-for="hospital in hospital_show_list"
+                :hospital-info="hospital" :key="hospital.properties.id"
+      >
+      </my-site-box >
+
+      <div class="columns is-mobile card-pagination">
+        <div class="column">
+          <a class="button"
+             :class=" {'is-disabled' : currentPage === 1 }"
+             @click="updatePageList('prev')"
+          >
+            上一页
+          </a>
+        </div>
+        <div class="column">
+          <h2 class="pagination-title">{{ currentPage }} / {{ totalPage }} </h2>
+        </div>
+        <div class="column">
+          <a class="button is-info is-pulled-right"
+             :class=" {'is-disabled' : currentPage === totalPage }"
+             @click="updatePageList('next')"
+          >
+            下一页
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div v-else class="safe-area">
+      <h4>
+        <span class="icon"><i class="fa fa-check"></i></span>此地区无登记场地
+      </h4>
+    </div>
+  </section>
 <!--    <section class="right-content">-->
 <!--        <area-select-box></area-select-box>-->
 
@@ -39,56 +78,56 @@
 <!--        </div>-->
 <!--    </section>-->
 
-  <section class="right-content">
-    <area-select-box></area-select-box>
+<!--  <section class="right-content">-->
+<!--    <area-select-box></area-select-box>-->
 
-    <div v-if="totalPage">
+<!--    <div v-if="totalPage">-->
 
-      <site-box v-for="hospital in hospital_show_list"
-                :hospital-info="hospital" :key="hospital.properties.id"
-      >
-      </site-box >
+<!--      <site-box v-for="hospital in hospital_show_list"-->
+<!--                :hospital-info="hospital" :key="hospital.properties.id"-->
+<!--      >-->
+<!--      </site-box >-->
 
-      <div class="columns is-mobile card-pagination">
-        <div style="display: inline">
-          <a class="button"
-             :class=" {'is-disabled' : currentPage === 1 }"
-             @click="updatePageList('prev')"
-          >
-            上一页
-          </a>
-        </div>
-        <div style="display: inline">
-<!--          <h2 class="pagination-title">{{ currentPage }} / {{ totalPage }} </h2>-->
-          {{ currentPage }} / {{ totalPage }}
-        </div>
-        <div style="display: inline">
-          <a class="button is-info is-pulled-right"
-             :class=" {'is-disabled' : currentPage === totalPage }"
-             @click="updatePageList('next')"
-          >
-            下一页
-          </a>
-        </div>
-      </div>
-    </div>
+<!--      <div class="columns is-mobile card-pagination">-->
+<!--        <div style="display: inline">-->
+<!--          <a class="button"-->
+<!--             :class=" {'is-disabled' : currentPage === 1 }"-->
+<!--             @click="updatePageList('prev')"-->
+<!--          >-->
+<!--            上一页-->
+<!--          </a>-->
+<!--        </div>-->
+<!--        <div style="display: inline">-->
+<!--&lt;!&ndash;          <h2 class="pagination-title">{{ currentPage }} / {{ totalPage }} </h2>&ndash;&gt;-->
+<!--          {{ currentPage }} / {{ totalPage }}-->
+<!--        </div>-->
+<!--        <div style="display: inline">-->
+<!--          <a class="button is-info is-pulled-right"-->
+<!--             :class=" {'is-disabled' : currentPage === totalPage }"-->
+<!--             @click="updatePageList('next')"-->
+<!--          >-->
+<!--            下一页-->
+<!--          </a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
-    <div v-else class="safe-area">
-      <h4>
-        <span class="icon"><i class="fa fa-check"></i></span>此地区无登记场地
-      </h4>
-    </div>
-  </section>
+<!--    <div v-else class="safe-area">-->
+<!--      <h4>-->
+<!--        <span class="icon"><i class="fa fa-check"></i></span>此地区无登记场地-->
+<!--      </h4>-->
+<!--    </div>-->
+<!--  </section>-->
 </template>
 
 <script>
-    import SiteBox from '../uielements/SiteBox.vue'
+    import MySiteBox from '../uielements/MySiteBox.vue'
     import AreaSelectBox from '../uielements/AreaSelectBox.vue'
 
     const LIST_MAX_LEN = 4;
 
     export default {
-        components: { SiteBox, AreaSelectBox },
+        components: { MySiteBox, AreaSelectBox },
         data() {
             return {
                 hospital_list: [],

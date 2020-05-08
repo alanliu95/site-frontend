@@ -1,49 +1,49 @@
 <template>
-<!--    <div class="control is-horizontal" id="select-group">-->
-<!--        <div class="control is-grouped">-->
-<!--            <div class="select is-fullwidth">-->
-<!--                <select v-model="selectedProvince"-->
-<!--                        :class="{ 'is-disabled': provinceList.length === 0 }"-->
-<!--                        @change="onChangeProvince()"-->
-<!--                >-->
-<!--                    <option value="all">全部省份</option>-->
-<!--                    <option v-for="option of provinceList" :value="option" :key="option">{{ option }}</option>-->
-<!--                </select>-->
-<!--            </div>-->
-<!--            <div class="select is-fullwidth">-->
-<!--                <select v-model="selectedCity"-->
-<!--                        :class="{ 'is-disabled': cityList.length === 0 }"-->
-<!--                        @change="emitAreaChnage()"-->
-<!--                >-->
-<!--                    <option value="all">全部地区</option>-->
-<!--                    <option v-for="option of cityList" :value="option" :key="option">{{ option }}</option>-->
-<!--                </select>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
-  <div class="control is-horizontal" id="select-group">
-    <div class="control is-grouped">
-      <div style="display: inline">
-        <select v-model="selectedProvince"
-                :class="{ 'is-disabled': provinceList.length === 0 }"
-                @change="onChangeProvince()"
-        >
-          <option value="all">全部省份</option>
-          <option v-for="option of provinceList" :value="option" :key="option">{{ option }}</option>
-        </select>
-      </div>
-      <div style="display: inline">
-        <select v-model="selectedCity"
-                :class="{ 'is-disabled': cityList.length === 0 }"
-                @change="emitAreaChnage()"
-        >
-          <option value="all">全部地区</option>
-          <option v-for="option of cityList" :value="option" :key="option">{{ option }}</option>
-        </select>
-      </div>
+    <div class="control is-horizontal" id="select-group">
+        <div class="control is-grouped">
+            <div class="select is-fullwidth">
+                <select v-model="selectedProvince"
+                        :class="{ 'is-disabled': provinceList.length === 0 }"
+                        @change="onChangeProvince()"
+                >
+                    <option value="all">全部省份</option>
+                    <option v-for="option of provinceList" :value="option" :key="option">{{ option }}</option>
+                </select>
+            </div>
+            <div class="select is-fullwidth">
+                <select v-model="selectedCity"
+                        :class="{ 'is-disabled': cityList.length === 0 }"
+                        @change="emitAreaChnage()"
+                >
+                    <option value="all">全部地区</option>
+                    <option v-for="option of cityList" :value="option" :key="option">{{ option }}</option>
+                </select>
+            </div>
+        </div>
     </div>
-  </div>
+
+<!--  <div class="control is-horizontal" id="select-group">-->
+<!--    <div class="control is-grouped">-->
+<!--      <div style="display: inline">-->
+<!--        <select v-model="selectedProvince"-->
+<!--                :class="{ 'is-disabled': provinceList.length === 0 }"-->
+<!--                @change="onChangeProvince()"-->
+<!--        >-->
+<!--          <option value="all">全部省份</option>-->
+<!--          <option v-for="option of provinceList" :value="option" :key="option">{{ option }}</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <div style="display: inline">-->
+<!--        <select v-model="selectedCity"-->
+<!--                :class="{ 'is-disabled': cityList.length === 0 }"-->
+<!--                @change="emitAreaChnage()"-->
+<!--        >-->
+<!--          <option value="all">全部地区</option>-->
+<!--          <option v-for="option of cityList" :value="option" :key="option">{{ option }}</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 </template>
 
 <script>

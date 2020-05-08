@@ -1,60 +1,60 @@
 <template>
-<!--    <div class="box hospital-box">-->
-<!--        <article class="media">-->
-<!--            <div class="media-left">-->
-<!--                <figure class="image is-64x64">-->
-<!--                    <img src="/myassets/images/common/hospital.png" alt="Image">-->
-<!--                </figure>-->
-<!--            </div>-->
-<!--            <div class="media-content">-->
-<!--                <div class="content hospital-name">-->
-<!--                    <h4>-->
-<!--                        <a @click.prevent="updateMapData(hospitalInfo)">-->
-<!--                            {{ hospitalInfo.properties.name }}-->
-<!--                        </a>&nbsp&nbsp&nbsp-->
-<!--                      <button v-on:click="selectSite()" style="color: #a7292e">详细</button>-->
-<!--                    </h4>-->
-<!--                    <p><strong>地区:</strong>{{ hospitalInfo.properties.city }}{{ hospitalInfo.properties.district }}</p>-->
-<!--                    <p class="tooltip"><strong>地址:</strong>{{ hospitalInfo.properties.address | addressFilter }}-->
-<!--                        <span class="tooltiptext tooltip-top"-->
-<!--                              v-if="hospitalInfo.properties.address.length > 12">-->
-<!--                            {{ hospitalInfo.properties.address }}-->
-<!--                        </span>-->
-<!--                    </p>-->
-<!--                    <p><strong>电话:</strong>{{ hospitalInfo.properties.phone | phoneFilter}}</p>-->
-
-<!--                </div>-->
-<!--            </div>-->
-<!--        </article>-->
-<!--    </div>-->
-  <div class="box hospital-box">
-    <article class="media">
-      <div class="media-left">
-<!--        <figure class="image is-64x64">-->
-<!--          <img src="/myassets/images/common/hospital.png" alt="Image">-->
-<!--        </figure>-->
-      </div>
-      <div class="media-content">
-        <div class="content hospital-name">
-          <h4>
-            <a @click.prevent="updateMapData(hospitalInfo)">
-              {{ hospitalInfo.properties.name }}
-            </a>&nbsp&nbsp&nbsp
-            <button v-on:click="selectSite()" style="color: #a7292e">详细</button>
-          </h4>
-          <p><strong>地区:</strong>{{ hospitalInfo.properties.city }}{{ hospitalInfo.properties.district }}</p>
-          <p class="tooltip"><strong>地址:</strong>{{ hospitalInfo.properties.address | addressFilter }}
-            <span class="tooltiptext tooltip-top"
-                  v-if="hospitalInfo.properties.address.length > 12">
+    <div class="box hospital-box">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-64x64">
+                    <img src="/myassets/images/common/hospital.png" alt="Image">
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="content hospital-name">
+                    <h4>
+                        <a @click.prevent="updateMapData(hospitalInfo)">
+                            {{ hospitalInfo.properties.name }}
+                        </a>&nbsp&nbsp&nbsp
+                      <button v-on:click="selectSite()" style="color: #a7292e">详细</button>
+                    </h4>
+                    <p><strong>地区:</strong>{{ hospitalInfo.properties.city }}{{ hospitalInfo.properties.district }}</p>
+                    <p class="tooltip"><strong>地址:</strong>{{ hospitalInfo.properties.address | addressFilter }}
+                        <span class="tooltiptext tooltip-top"
+                              v-if="hospitalInfo.properties.address.length > 12">
                             {{ hospitalInfo.properties.address }}
                         </span>
-          </p>
-          <p><strong>电话:</strong>{{ hospitalInfo.properties.phone | phoneFilter}}</p>
+                    </p>
+                    <p><strong>电话:</strong>{{ hospitalInfo.properties.phone | phoneFilter}}</p>
 
-        </div>
-      </div>
-    </article>
-  </div>
+                </div>
+            </div>
+        </article>
+    </div>
+<!--  <div class="box hospital-box">-->
+<!--    <article class="media">-->
+<!--      <div class="media-left">-->
+<!--&lt;!&ndash;        <figure class="image is-64x64">&ndash;&gt;-->
+<!--&lt;!&ndash;          <img src="/myassets/images/common/hospital.png" alt="Image">&ndash;&gt;-->
+<!--&lt;!&ndash;        </figure>&ndash;&gt;-->
+<!--      </div>-->
+<!--      <div class="media-content">-->
+<!--        <div class="content hospital-name">-->
+<!--          <h4>-->
+<!--            <a @click.prevent="updateMapData(hospitalInfo)">-->
+<!--              {{ hospitalInfo.properties.name }}-->
+<!--            </a>&nbsp&nbsp&nbsp-->
+<!--            <button v-on:click="selectSite()" style="color: #a7292e">详细</button>-->
+<!--          </h4>-->
+<!--          <p><strong>地区:</strong>{{ hospitalInfo.properties.city }}{{ hospitalInfo.properties.district }}</p>-->
+<!--          <p class="tooltip"><strong>地址:</strong>{{ hospitalInfo.properties.address | addressFilter }}-->
+<!--            <span class="tooltiptext tooltip-top"-->
+<!--                  v-if="hospitalInfo.properties.address.length > 12">-->
+<!--                            {{ hospitalInfo.properties.address }}-->
+<!--                        </span>-->
+<!--          </p>-->
+<!--          <p><strong>电话:</strong>{{ hospitalInfo.properties.phone | phoneFilter}}</p>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </article>-->
+<!--  </div>-->
 </template>
 
 <script>
